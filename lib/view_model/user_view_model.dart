@@ -3,21 +3,21 @@ import 'package:chatgpt/core.dart';
 class UserViewModel with ChangeNotifier {
   Future<bool> saveUser(UserModel user) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString('token', user.data!.userId.toString());
+    prefs.setString('userId', user.data!.userId.toString());
     notifyListeners();
     return true;
   }
 
   Future<bool> getUser() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    final String? token = prefs.getString('token');
+    final String? userId = prefs.getString('userId');
 
-    return (token == null || token == "") ? false : true;
+    return (userId == null || userId == "") ? false : true;
   }
 
   Future<bool> remove() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.remove('token');
+    prefs.remove('userId');
     return true;
   }
 
